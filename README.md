@@ -4,7 +4,7 @@ A starter kit for tiny and robust [ArtBlocks](https://artblocks.io/) artworks wi
 
 <img src="./docs/image.png" width="50%" />
 
-These tools were used to develop and deploy [Subscapes](https://github.com/mattdesl/subscapes).
+These tools were used to develop and deploy [Subscapes](https://github.com/mattdesl/subscapes) (which was 17kb after compression).
 
 Features:
 
