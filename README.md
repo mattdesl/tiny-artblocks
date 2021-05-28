@@ -13,6 +13,7 @@ Features:
 - Strong minification/compression
 - Prints minified bytes and approximate ETH deploy cost on each reload
 - A robust pseudo-random number generator and hashing function (for `tokenData` seed)
+  - See [PRNG](#prng) for an alternative
 - Some utilities for color, math, random, and vector to get you started
 - Additional function analysis, listing the byte size of the largest functions after minification
 - Reports syntax errors in the browser
@@ -67,6 +68,35 @@ You can also `npm install [some-module]` and then `import { foo } from 'some-mod
 ## Code Golf Tips
 
 See [./docs/tips.md](./docs/tips.md) for a series of suggestions on how to reduce bundle size.
+
+## PRNG
+
+The hash function and psuedo-random number generator included in `src/` is fairly strong, and may be overkill for most ArtBlocks scripts. It uses MurmurHash to turn the `tokenData` bytes into an initial state for a permuted congruential generator (PCG).
+
+The following suggestion by @piterpasma, which uses "xorshift128" generator, may be more than sufficient for most applications and can be compressed to a far smaller output:
+
+```js
+// hash from ArtBlocks scripts
+const hash = /* string from tokenData */;
+
+// state of the PRNG
+const xs_state = Uint32Array.from([0,0,0,0].map((_,i)=>parseInt(hash.substr(i*8+2,8),16)))
+
+const prng = () => {
+  /* Algorithm "xor128" from p. 5 of Marsaglia, "Xorshift RNGs" */
+  let s, t = xs_state[3];
+  xs_state[3] = xs_state[2];
+  xs_state[2] = xs_state[1];
+  xs_state[1] = s = xs_state[0];
+  t ^= t << 11;
+  t ^= t >>> 8;
+  xs_state[0] = t ^ s ^ (s >>> 19);
+  return xs_state[0] / 0x100000000;
+};
+
+// prints value in range 0..1
+console.log(prng());
+```
 
 ## License
 
