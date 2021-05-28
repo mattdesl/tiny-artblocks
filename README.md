@@ -73,7 +73,7 @@ See [./docs/tips.md](./docs/tips.md) for a series of suggestions on how to reduc
 
 The hash function and psuedo-random number generator included in `src/` is fairly strong, and may be overkill for most ArtBlocks scripts. It uses MurmurHash to turn the `tokenData` bytes into an initial state for a permuted congruential generator (PCG).
 
-The following suggestion by @piterpasma, which uses "xorshift128" generator, may be more than sufficient for most applications and can be compressed to a far smaller output:
+The following suggestion by [@piterpasma](https://twitter.com/piterpasma), which uses "xorshift128" generator, may be more than sufficient for most applications and can be compressed to a far smaller output:
 
 ```js
 // hash from ArtBlocks scripts
