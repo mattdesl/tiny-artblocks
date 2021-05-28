@@ -1,4 +1,4 @@
-# Always Optimize the Lowest Hanging Fruit
+# Optimize the Lowest Hanging Fruit
 
 Usually in a script there is a single source that is causing most of the bytes, such as the set of hex code palettes (see next tip).
 
