@@ -1,0 +1,39 @@
+{
+  "name": "tiny-artblocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "scripts": {
+    "build": "node tool/dev.js",
+    "inspect": "node tool/dev.js --inspect",
+    "start": "node tool/dev.js --dev"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/tiny-artblocks.git"
+  },
+  "homepage": "https://github.com/mattdesl/tiny-artblocks",
+  "bugs": {
+    "url": "https://github.com/mattdesl/tiny-artblocks/issues"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "acorn": "^8.2.4",
+    "acorn-walk": "^8.1.0",
+    "babel-minify": "^0.5.1",
+    "colorette": "^1.2.2",
+    "live-server": "^1.2.1",
+    "pretty-bytes": "^5.6.0",
+    "rollup": "^2.50.2",
+    "terser": "^5.7.0"
+  },
+  "dependencies": {}
+}
