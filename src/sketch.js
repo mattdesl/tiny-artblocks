@@ -1,28 +1,23 @@
-import * as random from "./util/random";
+import CreateGenerator from "./util/random";
 import { Lch } from "./util/color";
 
 export default (hash) => {
+  const { range, pick, gaussian } = CreateGenerator(hash);
   // You may want to remove this line for production
   console.log(hash);
 
-  // set the shared PRNG to new seed
-  random.set_seed(hash);
-
-  const colors = [
-    Lch(50, 50, random.range(180, 360)),
-    Lch(100, 70, random.range(0, 180)),
-  ];
-
+  const colors = [Lch(50, 50, range(180, 360)), Lch(100, 70, range(0, 180))];
+  
   const background = Lch(95, 0, 0);
 
   const margin = 0.15;
   const shapes = Array(450)
     .fill()
     .map(() => [
-      random.range(margin, 1 - margin),
-      random.range(margin, 1 - margin),
-      Math.abs(random.gaussian(0, 0.01)),
-      random.pick(colors),
+      range(margin, 1 - margin),
+      range(margin, 1 - margin),
+      Math.abs(gaussian(0, 0.01)),
+      pick(colors),
     ]);
 
   const setContext = (context, color) => {
