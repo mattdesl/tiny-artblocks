@@ -37,7 +37,7 @@ if (mode === "development") {
       middleware: [
         async (req, res, next) => {
           if (req.url === "/main.js" || req.url === "/main.min.js") {
-            const src = await build();
+            const src = await build(req.url === "/main.min.js");
             res.setHeader("Content-Type", "text/javascript");
             res.end(src);
           } else {
@@ -57,7 +57,7 @@ if (mode === "development") {
   build();
 }
 
-async function build() {
+async function build(minify = false) {
   try {
     const src = await bundle();
 
@@ -69,7 +69,7 @@ async function build() {
     const eth = 675 * min.length * gwei * (1 / 1000000000);
     console.log(`~${eth.toFixed(4)} ETH at ${gwei} gwei`);
 
-    return min;
+    return minify ? min : src;
   } catch (err) {
     let msg = err.toString();
     if (err.frame) {
