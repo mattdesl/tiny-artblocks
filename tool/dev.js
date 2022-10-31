@@ -36,7 +36,7 @@ if (mode === "development") {
       ignore: path.resolve(__dirname, "../www/*.js"),
       middleware: [
         async (req, res, next) => {
-          if (req.url === "/main.min.js") {
+          if (req.url === "/main.js" || req.url === "/main.min.js") {
             const src = await build();
             res.setHeader("Content-Type", "text/javascript");
             res.end(src);
